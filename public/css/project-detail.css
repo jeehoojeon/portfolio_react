@@ -1,0 +1,244 @@
+/* 노토산스 */
+/*   font-family: "Noto Sans KR", sans-serif; */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;display=swap);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css);
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;display=swap);
+
+:root {
+  --bg: #121212;
+  --card-bg: #1c1c1c;
+  --border: 1px solid #3c3c3a;
+  --shadow: 0px 10px 15px 0.3px rgba(0, 0, 0, 0.411);
+  --text: #ffffff;
+  --sub-text: #909090;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html,
+body {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  text-align: center;
+  background: var(--bg);
+}
+
+h1 {
+  padding: 20px;
+  color: var(--text);
+  font-size: 50px;
+  font-family: "minguk";
+  font-weight: normal;
+}
+
+.slider {
+  max-width: 1100px;
+  height: 427px;
+  display: flex;
+  background: transparent;
+}
+
+.slider .card {
+  flex: 1;
+  margin: 0 10px;
+  background: var(--card-bg);
+  border: var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.slider .card .img {
+  height: 200px;
+  margin: 16px;
+  width: calc(100% - 32px);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.slider .card .img:hover {
+  filter: brightness(75%);
+}
+
+.slider .card .img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: all 0.2s ease-in-out;
+}
+
+.slider .card .img img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.slider .card .content {
+  padding: 10px 20px;
+}
+
+.card .content .title {
+  text-align: justify;
+  font-size: 23px;
+  font-weight: 500;
+  color: var(--text);
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.card .content .sub-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--sub-text);
+  line-height: 20px;
+  text-align: left;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.card .content p {
+  /*   text-align: justify; */
+  text-align: left;
+  margin: 10px 0;
+  color: var(--sub-text);
+  line-height: 1.5;
+  max-height: 6em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.card .content button {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  bottom: 10px;
+  right: 24px;
+  font-size: 20px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  transition: bottom 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+.card:hover button {
+  bottom: 15px;
+  opacity: 1;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 4rem 5vw;
+  padding: 0;
+  list-style-type: none;
+}
+
+.card {
+  position: relative;
+  display: block;
+  height: 100%;
+  border-radius: calc(var(--curve) * 1px);
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.card__image {
+  width: 100%;
+  height: auto;
+}
+
+.card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  border-radius: calc(var(--curve) * 1px);
+  background-color: var(--surface-color);
+  transform: translateY(100%);
+  transition: 0.2s ease-in-out;
+}
+
+.card:hover .card__overlay {
+  transform: translateY(0);
+}
+
+.card__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  padding: 2em;
+  border-radius: calc(var(--curve) * 1px) 0 0 0;
+  /*   background-color: var(--surface-color); */
+  background-color: black;
+  transform: translateY(-100%);
+  transition: 0.2s ease-in-out;
+}
+
+.card__arc {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  z-index: 1;
+}
+
+.card__arc path {
+  fill: var(--surface-color);
+  d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+}
+
+.card:hover .card__header {
+  transform: translateY(0);
+}
+
+.card__thumb {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.card__title {
+  font-size: 1em;
+  margin: 0 0 0.3em;
+  color: black;
+}
+
+.card__tagline {
+  display: block;
+  margin: 1em 0;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 0.8em;
+  color: #d7bdca;
+}
+
+.card__status {
+  font-size: 0.8em;
+  color: #d7bdca;
+}
+
+.card__description {
+  padding: 0 2em 2em;
+  margin: 0;
+  color: black;
+  background-color: black;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: small;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+/*   -webkit-line-clamp: 3; */
+  overflow: hidden;
+}

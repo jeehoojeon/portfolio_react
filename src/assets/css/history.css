@@ -1,0 +1,383 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600&display=swap');
+
+/* 공통 설정 */
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 400;
+  color: #333;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 타임라인 영역 */
+#timeline {
+  padding: 120px 0;
+  position: relative;
+}
+
+.timeline-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.timeline-title {
+  font-family: 'minguk';
+  font-weight: normal;
+  text-align: center;
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+  letter-spacing: 4px;
+  color: white;
+}
+
+/* .timeline-subtitle {
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 60px;
+  color: #666;
+  letter-spacing: 1px;
+} */
+
+#timeline .demo-card-wrapper {
+  position: relative;
+  margin: auto;
+}
+
+/* 중앙선 설정 */
+#timeline .demo-card-wrapper::after {
+  z-index: 1;
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  /*   background: linear-gradient(to bottom, 
+    rgba(0,0,0,0.1), 
+    rgba(0,0,0,0.2) 30%, 
+    rgba(0,0,0,0.2) 70%, 
+    rgba(0,0,0,0.1)); */
+background: white;
+}
+
+/* 카드 공통 */
+#timeline .demo-card {
+  position: relative;
+  display: block;
+  max-width: 450px;
+  z-index: 2;
+  height: 420px;
+  margin-bottom: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+#timeline .demo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* 기본 모바일 레이아웃 (화면이 작을 때) */
+@media (max-width: 999px) {
+  #timeline .demo-card-wrapper::after {
+    left: 30px;
+    /* 모바일에서는 왼쪽으로 이동 */
+  }
+
+  #timeline .demo-card {
+    max-width: calc(100% - 60px);
+    margin-left: 60px;
+    margin-right: auto;
+  }
+
+  #timeline .demo-card::before {
+    left: -30px;
+  }
+}
+
+/* 데스크탑 레이아웃 (1000px 이상) */
+@media (min-width: 1000px) {
+  #timeline .demo-card {
+    height: 420px;
+    margin: 45px auto;
+  }
+
+  /* 홀수 카드는 왼쪽에 */
+  #timeline .demo-card:nth-child(odd) {
+    margin-left: 0;
+    margin-right: calc(50% + 45px);
+  }
+
+  /* 짝수 카드는 오른쪽에 */
+  #timeline .demo-card:nth-child(even) {
+    margin-left: calc(50% + 45px);
+    margin-right: 0;
+  }
+
+  /* 두번째 카드부터 간격 조정 */
+  #timeline .demo-card:nth-child(2) {
+    margin-top: 180px;
+  }
+}
+
+/* 헤드 및 원형 */
+#timeline .demo-card .head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-weight: 400;
+  height: 70px;
+}
+
+/* 원형 표시 */
+#timeline .demo-card::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 35px;
+  z-index: 10;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+#timeline .demo-card:hover::before {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.15);
+}
+
+/* 데스크탑에서 원형 위치 조정 */
+@media (min-width: 1000px) {
+  #timeline .demo-card:nth-child(odd)::before {
+    right: -62px;
+    left: auto;
+  }
+
+  #timeline .demo-card:nth-child(even)::before {
+    left: -62px;
+  }
+}
+
+/* 화살표 (머리 방향 표시) */
+@media (min-width: 1000px) {
+  #timeline .demo-card .head::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  #timeline .demo-card:nth-child(odd) .head::after {
+    border-left: 12px solid;
+    right: -12px;
+  }
+
+  #timeline .demo-card:nth-child(even) .head::after {
+    border-right: 12px solid;
+    left: -12px;
+  }
+}
+
+#timeline .demo-card .head .number-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 70px;
+  font-size: 24px;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.17);
+  font-family: 'Raleway', sans-serif;
+}
+
+#timeline .demo-card .head h2 {
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  padding: 0 15px;
+  line-height: 1.2;
+  letter-spacing: 1px;
+}
+
+#timeline .demo-card .head h2 span {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 400;
+  margin-bottom: 4px;
+  opacity: 0.8;
+}
+
+/* 카드 바디 */
+#timeline .demo-card .body {
+  background: #fff;
+  height: calc(100% - 70px);
+  overflow: hidden;
+}
+
+#timeline .demo-card .body-content {
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#timeline .demo-card .body p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #555;
+  flex: 1;
+  word-break: keep-all;
+}
+
+.image-container {
+  height: 220px;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+#timeline .demo-card .body img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+#timeline .demo-card:hover .body img {
+  transform: scale(1.05);
+}
+
+/* 단계별 배경 및 화살표 색상 - 그라데이션 적용 */
+#timeline .demo-card--step1 .head {
+  background: linear-gradient(45deg, #2196F3, #4FC3F7);
+}
+
+#timeline .demo-card--step1 .head::after {
+  border-color: #4FC3F7;
+}
+
+#timeline .demo-card--step1::before {
+  background-color: #4FC3F7;
+}
+
+#timeline .demo-card--step2 .head {
+  background: linear-gradient(45deg, #00BCD4, #4DD0E1);
+}
+
+#timeline .demo-card--step2 .head::after {
+  border-color: #4DD0E1;
+}
+
+#timeline .demo-card--step2::before {
+  background-color: #4DD0E1;
+}
+
+#timeline .demo-card--step3 .head {
+  background: linear-gradient(45deg, #9C27B0, #BA68C8);
+}
+
+#timeline .demo-card--step3 .head::after {
+  border-color: #BA68C8;
+}
+
+#timeline .demo-card--step3::before {
+  background-color: #BA68C8;
+}
+
+#timeline .demo-card--step4 .head {
+  background: linear-gradient(45deg, #3F51B5, #7986CB);
+}
+
+#timeline .demo-card--step4 .head::after {
+  border-color: #7986CB;
+}
+
+#timeline .demo-card--step4::before {
+  background-color: #7986CB;
+}
+
+#timeline .demo-card--step5 .head {
+  background: linear-gradient(45deg, #009688, #4DB6AC);
+}
+
+#timeline .demo-card--step5 .head::after {
+  border-color: #4DB6AC;
+}
+
+#timeline .demo-card--step5::before {
+  background-color: #4DB6AC;
+}
+
+#timeline .demo-card--step6 .head {
+  background: linear-gradient(45deg, #F44336, #EF5350);
+}
+
+#timeline .demo-card--step6 .head::after {
+  border-color: #EF5350;
+}
+
+#timeline .demo-card--step6::before {
+  background-color: #EF5350;
+}
+
+#timeline .demo-card--step7 .head {
+  background: linear-gradient(45deg, #FF9800, #FFB74D);
+}
+
+#timeline .demo-card--step7 .head::after {
+  border-color: #FFB74D;
+}
+
+#timeline .demo-card--step7::before {
+  background-color: #FFB74D;
+}
+
+/* 모바일 대응 */
+@media (max-width: 767px) {
+  .timeline-title {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+  }
+
+  .timeline-subtitle {
+    font-size: 1rem;
+    margin-bottom: 40px;
+  }
+
+  #timeline .demo-card {
+    height: auto;
+    min-height: 400px;
+    margin-bottom: 50px;
+  }
+
+  #timeline .demo-card .body p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .image-container {
+    height: 180px;
+  }
+}
